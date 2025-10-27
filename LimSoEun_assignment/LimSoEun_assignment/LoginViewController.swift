@@ -10,37 +10,22 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    //MARK: UI
     private let navigationView = CustomNavigationView(title: "이메일 또는 아이디로 계속")
     
-    private let emailField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "이메일 아이디"
-        textField.font = .font(.pretendardRegular , ofSize: 14)
-        textField.layer.cornerRadius = 8
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.baeminGray200.cgColor
-        textField.setPlaceholder(color: .baeminGray700)
-        textField.addLeftPadding()
-        return textField
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "비밀번호"
-        textField.isSecureTextEntry = true
-        textField.font = .font(.pretendardRegular , ofSize: 14)
-        textField.layer.cornerRadius = 8
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.baeminGray200.cgColor
-        textField.setPlaceholder(color: .baeminGray700)
-        textField.addLeftPadding()
-
-       
-        return textField
-    }()
-    
+    ///이메일 입력 필드
+    private let emailField = FloatingLabelTextField(
+        titleText: "이메일 아이디",
+        activePlaceholder: "이메일 또는 아이디를 입력해주세요"
+    )
+    ///비밀번호 입력 필드
+    private let passwordTextField = PasswordTextField(
+        titleText: "비밀번호",
+        activePlaceholder: "비밀번호를 입력해주세요"
+    )
+    ///로그인버튼
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.layer.backgroundColor = UIColor.baeminGray200.cgColor
@@ -53,7 +38,7 @@ final class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
     }()
-    
+    ///계정 찾기 버튼
     private lazy var findAccountButton: UIButton = {
         var config = UIButton.Configuration.plain()
         config.title = "계정찾기"
@@ -78,8 +63,13 @@ final class LoginViewController: UIViewController {
         self.view.backgroundColor = .white
         setupNavigation()
         setLayout()
+        
+        emailField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
     }
     
+    //MARK: - layout
     private func setLayout() {
         [emailField, passwordTextField, loginButton, findAccountButton].forEach {
             self.view.addSubview($0)
@@ -111,7 +101,7 @@ final class LoginViewController: UIViewController {
           
         }
     }
-    
+    //MARK: - navigation 설정
     private func setupNavigation() {
         view.addSubview(navigationView)
         navigationView.onBackButtonTap = { [weak self] in
@@ -124,25 +114,38 @@ final class LoginViewController: UIViewController {
             $0.height.equalTo(45)
         }
     }
-
+    //MARK: - 화면이동
     private func pushToWelcomeVC() {
            let welcomeViewController = WelcomeViewController()
-           welcomeViewController.name = emailField.text
+            welcomeViewController.name = emailField.textField.text
            self.navigationController?.pushViewController(welcomeViewController, animated: true)
        }
-      
+    ///뒤로가기 액션
     @objc private func backButtonTapped() {
             dismiss(animated: true)
         }
-    
+    ///로그인버튼 클릭 시 액션
     @objc
     private func loginButtonDidTap() {
         pushToWelcomeVC()
     }
     
-    
+    //MARK: - 로그인 버튼 활성화
+    @objc private func textFieldDidChange() {
+        let isEmailFilled = !(emailField.textField.text ?? "").isEmpty
+        let isPasswordFilled = !(passwordTextField.textField.text ?? "").isEmpty
+        
+        if isEmailFilled && isPasswordFilled {
+            loginButton.layer.backgroundColor = UIColor.baeminMint500.cgColor
+            loginButton.layer.borderColor = UIColor.baeminMint500.cgColor
+        } else {
+            loginButton.layer.backgroundColor = UIColor.baeminGray200.cgColor
+            loginButton.layer.borderColor = UIColor.baeminGray200.cgColor
+        }
+    }
 }
 
+//MARK: - UITextField Extension
 extension UITextField {
     func addLeftPadding(_ width: CGFloat = 10) {
         let pv = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 0))
