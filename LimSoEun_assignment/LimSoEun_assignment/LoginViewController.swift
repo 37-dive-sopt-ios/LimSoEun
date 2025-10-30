@@ -12,7 +12,7 @@ import SnapKit
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    //MARK: UI
+    //MARK: - UI
     private let navigationView = CustomNavigationView(title: "이메일 또는 아이디로 계속")
     
     ///이메일 입력 필드
@@ -68,7 +68,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
     }
-    
+ 
     //MARK: - layout
     private func setLayout() {
         [emailField, passwordTextField, loginButton, findAccountButton].forEach {
@@ -127,6 +127,12 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     ///로그인버튼 클릭 시 액션
     @objc
     private func loginButtonDidTap() {
+    
+        ///이메일 정규식 안맞으면  토스트 버튼 활성화
+        guard let email = emailField.textField.text, Validator.isValidEmail(email) else {
+                showToast(message: "이메일 형식이 달라요")
+                return
+            }
         pushToWelcomeVC()
     }
     
