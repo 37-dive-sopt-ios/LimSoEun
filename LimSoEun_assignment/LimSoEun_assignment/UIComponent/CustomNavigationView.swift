@@ -25,7 +25,7 @@ final class CustomNavigationView: UIView {
     }
    
     private func setupUI(title: String) {
-        backgroundColor = .white
+        backgroundColor = .baeminWhite
         
         let arrowImage = UIImage(named: "arrowLeft")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(arrowImage, for: .normal)

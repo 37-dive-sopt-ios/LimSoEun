@@ -16,8 +16,6 @@ final class PasswordTextField: FloatingLabelTextField {
         button.setImage(UIImage(named: "eye-slash"), for: .normal)
         button.tintColor = .baeminGray300
         button.imageView?.contentMode = .scaleAspectFit
-        
-        //TODO: - 트러블슈팅적기!
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         
@@ -84,7 +82,6 @@ final class PasswordTextField: FloatingLabelTextField {
         buttonStack.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(4)
         }
-        //TODO: - 버튼 사이즈 조절 및 레이아웃 수정 ! 
 
         buttonContainer.snp.makeConstraints {
             $0.width.equalTo(50)
