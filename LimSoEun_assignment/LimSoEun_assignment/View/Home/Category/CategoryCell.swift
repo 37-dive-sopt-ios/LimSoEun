@@ -10,7 +10,7 @@ import SnapKit
 
 final class CategoryCell: UICollectionViewCell {
 
-    
+    //MARK: UIComponent
     private let iconView: UIView = {
         let view = UIView()
         view.backgroundColor = .baeminBackgroundWhite
@@ -32,6 +32,7 @@ final class CategoryCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

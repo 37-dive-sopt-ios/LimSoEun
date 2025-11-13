@@ -52,7 +52,7 @@ final class CategorySectionBackgroundView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        setupView()
         setupLayout()
         bindActions()
     }
@@ -62,7 +62,7 @@ final class CategorySectionBackgroundView: UIView {
     }
     
     // MARK: - Setup
-    private func setupUI() {
+    private func setupView() {
         backgroundColor = .baeminWhite
         addSubview(categoryHeaderView)
         addSubview(categorySectionView)

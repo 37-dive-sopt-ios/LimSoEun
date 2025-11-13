@@ -11,7 +11,7 @@ import Then
 
 final class HomeViewController: UIViewController {
     
-    // MARK: - 상단 고정 UI
+    // MARK: - UI
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "우리집"
@@ -54,10 +54,8 @@ final class HomeViewController: UIViewController {
         return button
     }()
     
-    // MARK: - 고정 SearchBar
     private let searchBar = SearchBarView()
     
-    // MARK: - Scroll 영역
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
@@ -81,6 +79,12 @@ final class HomeViewController: UIViewController {
     
     private let categorySectionBackground = CategorySectionBackgroundView()
     
+    private let marketSectionView = MarketSectionView()
+    
+    private let adBannerView = AdBannerView()
+    
+    private let foodRankSectionView = FoodRankSectionView()
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +97,9 @@ final class HomeViewController: UIViewController {
         [locationStackView, discountIcon, alarmButton, cartButton, searchBar, scrollView].forEach {
             view.addSubview($0)
         }
+        
+        //ZStack .!!!!
+       // view.bringSubviewToFront(<#T##UIView#>)
         
         locationStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(9)
@@ -138,7 +145,7 @@ final class HomeViewController: UIViewController {
         }
         
         // ScrollView 안쪽 콘텐츠
-        [bmartImage, descriptionLabel, categorySectionBackground].forEach {
+        [bmartImage, descriptionLabel, categorySectionBackground, marketSectionView, adBannerView, foodRankSectionView].forEach {
             contentView.addSubview($0)
         }
         
@@ -156,7 +163,26 @@ final class HomeViewController: UIViewController {
         categorySectionBackground.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(24)
+        }
+        
+        marketSectionView.snp.makeConstraints {
+            $0.top.equalTo(categorySectionBackground.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
+        }
+        
+        adBannerView.snp.makeConstraints {
+            $0.top.equalTo(marketSectionView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(140)
+            
+        }
+        
+        foodRankSectionView.snp.makeConstraints {
+            $0.top.equalTo(adBannerView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(280)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }

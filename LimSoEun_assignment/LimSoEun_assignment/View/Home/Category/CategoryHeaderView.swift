@@ -55,7 +55,7 @@ final class CategoryHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .baeminWhite
-        setupUI()
+        setupView()
         setupLayout()
         updateUnderline(animated: false)
     }
@@ -65,7 +65,7 @@ final class CategoryHeaderView: UIView {
     }
     
     // MARK: - Setup
-    private func setupUI() {
+    private func setupView() {
         addSubview(scrollView)
         scrollView.addSubview(stackView)
         addSubview(baselineView)
