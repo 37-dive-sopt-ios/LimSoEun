@@ -39,21 +39,21 @@ final class FoodRankCell: UICollectionViewCell {
     
     private let ratingLabel: UILabel = {
         let label = UILabel()
-        label.font = .font(.pretendardMedium, ofSize: 11)
+        label.font = .font(.pretendardRegular, ofSize: 12)
         label.textColor = .baeminGray600
         return label
     }()
     
     private let reviewCountLabel: UILabel = {
         let label = UILabel()
-        label.font = .font(.pretendardMedium, ofSize: 12)
-        label.textColor = .baeminGray300
+        label.font = .font(.pretendardRegular, ofSize: 12)
+        label.textColor = .baeminGray600
         return label
     }()
     
     private let menuLabel: UILabel = {
         let label = UILabel()
-        label.font = .font(.pretendardRegular, ofSize: 13)
+        label.font = .font(.pretendardRegular, ofSize: 14)
         label.textColor = .baeminBlack
         label.numberOfLines = 1
         return label
@@ -117,42 +117,42 @@ final class FoodRankCell: UICollectionViewCell {
         
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalTo(145)
         }
         
         storeLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(6)
+            $0.top.equalTo(imageView.snp.bottom).offset(9)
             $0.leading.equalToSuperview()
         }
         
         ratingStack.snp.makeConstraints {
             $0.centerY.equalTo(storeLabel)
-            $0.leading.equalTo(storeLabel.snp.trailing).offset(4)
+            $0.leading.equalTo(storeLabel.snp.trailing).offset(5)
             $0.trailing.lessThanOrEqualToSuperview()
         }
         
         menuLabel.snp.makeConstraints {
-            $0.top.equalTo(ratingStack.snp.bottom).offset(4)
+            $0.top.equalTo(ratingStack.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview()
         }
         
         discountLabel.snp.makeConstraints {
-            $0.top.equalTo(menuLabel.snp.bottom).offset(4)
+            $0.top.equalTo(menuLabel.snp.bottom).offset(6)
             $0.leading.equalToSuperview()
         }
         
         priceLabel.snp.makeConstraints {
             $0.centerY.equalTo(discountLabel)
-            $0.leading.equalTo(discountLabel.snp.trailing).offset(4)
+            $0.leading.equalTo(discountLabel.snp.trailing).offset(6)
         }
         
         originalPriceLabel.snp.makeConstraints {
-            $0.top.equalTo(priceLabel.snp.bottom).offset(2)
+            $0.top.equalTo(priceLabel.snp.bottom).offset(6)
             $0.leading.equalToSuperview()
         }
         
         minimumOrderLabel.snp.makeConstraints {
-            $0.top.equalTo(originalPriceLabel.snp.bottom).offset(4)
+            $0.top.equalTo(originalPriceLabel.snp.bottom).offset(6)
             $0.leading.equalToSuperview()
         }
     }
