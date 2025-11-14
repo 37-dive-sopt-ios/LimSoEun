@@ -14,18 +14,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-      // 1.
         guard let windowScene = (scene as? UIWindowScene) else { return }
-      // 2.
+
+        //  UIWindow 생성
         let window = UIWindow(windowScene: windowScene)
-      // 3.
-        let vc = UINavigationController(rootViewController: LoginViewController())
-      // 4.
-        window.rootViewController = vc
-      // 5.
+
+        // MainTabBarController를 루트로 설정
+        let tabBarController = MainTapBarController()
+
+        // 네비게이션 구조가 필요하면 이렇게 감싸
+        // let navController = UINavigationController(rootViewController: tabBarController)
+        // window.rootViewController = navController
+
+        window.rootViewController = tabBarController
         self.window = window
-      // 6.
-        window.makeKeyAndVisible()
+            window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

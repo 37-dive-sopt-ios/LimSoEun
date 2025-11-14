@@ -153,18 +153,6 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
 //MARK: - UITextField Extension
 extension UITextField {
-    func addLeftPadding(_ width: CGFloat = 10) {
-        let pv = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 0))
-        leftView = pv
-        leftViewMode = .always
-    }
-    
-    func addRightPadding(_ width: CGFloat = 10) {
-        let pv = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 0))
-        rightView = pv
-        rightViewMode = .always
-    }
-    
     //textField 색상변경
     func setPlaceholder(color: UIColor) {
             guard let string = self.placeholder else {
