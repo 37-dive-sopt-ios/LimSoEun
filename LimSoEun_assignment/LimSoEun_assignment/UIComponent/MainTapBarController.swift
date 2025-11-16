@@ -11,7 +11,7 @@ final class MainTapBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
-        setupViewControlers()
+        setupViewControllers()
     }
     
     private func setupTabBar() {
