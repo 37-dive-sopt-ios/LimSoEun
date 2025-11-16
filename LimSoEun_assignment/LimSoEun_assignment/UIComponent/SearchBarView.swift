@@ -11,6 +11,7 @@ import SnapKit
 final class SearchBarView: UIView {
 
     // MARK: - UI
+    
     private let searchIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "search")

@@ -21,7 +21,7 @@ final class MainTapBarController: UITabBarController {
         tabBar.isTranslucent = false
     }
     
-    private func setupViewControlers() {
+    private func setupViewControllers() {
         let homeVC = HomeViewController()
         let shoppingVC = UIViewController()
         let favoriteVC = UIViewController()
@@ -61,8 +61,4 @@ final class MainTapBarController: UITabBarController {
         
         viewControllers = [homeVC, shoppingVC, favoriteVC, orderVC, myVC]
     }
-}
-
-#Preview {
-    MainTapBarController()
 }
