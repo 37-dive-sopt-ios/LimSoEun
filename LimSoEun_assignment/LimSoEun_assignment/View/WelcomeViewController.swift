@@ -38,14 +38,14 @@ final class WelcomeViewController: UIViewController {
         return label
     }()
     
-    private var backToLoginButton: UIButton = {
+    private var goHomeButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 4
         button.layer.backgroundColor = UIColor.baeminMint500.cgColor
-        button.setTitle("뒤로가기", for: .normal)
+        button.setTitle("메인으로가기", for: .normal)
         button.layer.borderColor = UIColor.baeminWhite.cgColor
         button.titleLabel?.font = .font(.pretendardBold, ofSize: 18)
-        button.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goHomeButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -64,7 +64,7 @@ final class WelcomeViewController: UIViewController {
     }
     
     private func setLayout() {
-        [logoImageView, welcomeLabel, welcomePersonLabel, backToLoginButton].forEach {
+        [logoImageView, welcomeLabel, welcomePersonLabel, goHomeButton].forEach {
             self.view.addSubview($0)
         }
         
@@ -85,7 +85,7 @@ final class WelcomeViewController: UIViewController {
             
         }
         
-        backToLoginButton.snp.makeConstraints {
+        goHomeButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(48)
             $0.height.equalTo(52)
             $0.leading.trailing.equalToSuperview().inset(16)
@@ -106,12 +106,9 @@ final class WelcomeViewController: UIViewController {
     }
     
     @objc
-    private func backToLoginButtonDidTap() {
-        if self.navigationController == nil {
-            self.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+    private func goHomeButtonDidTap() {
+        let homeVC = HomeViewController()
+        self.navigationController?.pushViewController(homeVC, animated: true)
     }
 }
 
