@@ -23,12 +23,11 @@ final class MainTapBarController: UITabBarController {
     
     private func setupViewControllers() {
         let homeVC = HomeViewController()
-        let shoppingVC = UIViewController()
+        let serverVC = ServerViewController()
         let favoriteVC = UIViewController()
         let orderVC = UIViewController()
         let myVC = UIViewController()
         
-        shoppingVC.view.backgroundColor = .baeminGray300
         favoriteVC.view.backgroundColor = .baeminGray700
         orderVC.view.backgroundColor = .baeminMint300
         myVC.view.backgroundColor = .baeminMint500
@@ -38,8 +37,8 @@ final class MainTapBarController: UITabBarController {
             image: UIImage(named: "home_filled"), //TODO: - 선택 컴포넌트 수정
             selectedImage: UIImage(named: "home_filled")
         )
-        shoppingVC.tabBarItem = UITabBarItem (
-            title: "장보기·쇼핑",
+        serverVC.tabBarItem = UITabBarItem (
+            title: "서버",
             image: UIImage(named: "shopping"), //TODO: - 선택 컴포넌트 수정
             selectedImage: UIImage(named: "shopping")
         )
@@ -59,6 +58,6 @@ final class MainTapBarController: UITabBarController {
             selectedImage: UIImage(named: "face")
         )
         
-        viewControllers = [homeVC, shoppingVC, favoriteVC, orderVC, myVC]
+        viewControllers = [homeVC, serverVC, favoriteVC, orderVC, myVC]
     }
 }
